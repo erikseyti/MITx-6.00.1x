@@ -1,0 +1,8 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jan 29 21:27:53 2017
+
+@author: sey_t
+"""
+
+print("Please think of a number between 0 and 100!")

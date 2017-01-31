@@ -1,0 +1,9 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jan 22 13:56:19 2017
+
+@author: sey_t
+"""
+print("digite algum ")
+text = input("digite algo")
+print(text)

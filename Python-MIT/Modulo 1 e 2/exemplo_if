@@ -1,0 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Jan 23 20:11:42 2017
+
+@author: sey_t
+"""
+
+num = 5
+if num > 2:
+    print(num)
+    num -= 1
+print(num)

@@ -1,0 +1,7 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Jan 21 15:02:30 2017
+
+@author: sey_t
+"""
+print("Hello World")

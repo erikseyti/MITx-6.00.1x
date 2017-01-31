@@ -1,0 +1,16 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Jan 31 10:22:14 2017
+
+@author: sey_t
+"""
+
+def a(x):
+   '''
+   x: int or float.
+   '''
+   return x + 1
+
+x=3
+print(x)
+print(type(x))

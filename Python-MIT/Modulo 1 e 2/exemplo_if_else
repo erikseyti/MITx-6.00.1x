@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jan 22 14:10:34 2017
+
+@author: sey_t
+"""
+
+x = 4
+
+if x != 5:
+    print("valor de x incorreto")
+else:
+    print("valor de x correto")
