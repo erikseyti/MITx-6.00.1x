@@ -7,7 +7,7 @@ Created on Wed Jun  8 12:33:30 2016
 
 def isPalindrome(s):
 
-    def toChars(s):
+        def toChars(s):
         s = s.lower()
         ans = ''
         for c in s:

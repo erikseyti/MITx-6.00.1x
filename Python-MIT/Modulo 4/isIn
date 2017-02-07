@@ -1,0 +1,19 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Feb  5 13:56:09 2017
+
+@author: sey_t
+"""
+
+def isIn(char, aStr):
+    '''
+    char: a single character
+    aStr: an alphabetized string
+    
+    returns: True if char is in aStr; False otherwise
+    '''
+    # Your code here
+
+
+
+isIn("e","abcdefghij")    
