@@ -7,9 +7,13 @@
 # but you will have to know how to use the functions
 # (so be sure to read the docstrings!)
 
-import random
 
+import random
 WORDLIST_FILENAME = "words.txt"
+secretWord = ""
+lettersGuessed = []
+mistakesMade = 0
+availableLetters = []
 
 def loadWords():
     """
@@ -96,8 +100,9 @@ def getAvailableLetters(lettersGuessed):
       yet been guessed.
     '''
     # FILL IN YOUR CODE HERE...
-    import string
+    
    # alfabeto = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+    import string
     alfabeto = string.ascii_lowercase
     alfabetoDisponivel =[]
     for l in alfabeto:
@@ -127,17 +132,31 @@ def hangman(secretWord):
     Follows the other limitations detailed in the problem write-up.
     '''
     # FILL IN YOUR CODE HERE...
-
-
-
+    contagemPalavra =len(secretWord)
+    palavraDescoberta = False
+    lettersGuessed = []
+    guess = ""
+    mistakesMade = 8
+    print("Welcome to the game, Hangman!")
+    print(secretWord)
+    print("I am Thinking of a word that is "+ str(contagemPalavra) + " letters long.")
+    print("-------------")
+    while mistakesMade > 0:
+        print("You Have "+ str(mistakesMade) +" Guesses Left.")
+        letrasDisponiveis = getAvailableLetters(lettersGuessed) 
+        print("Available Letters: " + letrasDisponiveis)
+        guess = input("Please guess a letter: ")
+        guessInLowerCase = guess.lower()
+        print(guessInLowerCase)
+        mistakesMade = mistakesMade - 1
 
 #print(isWordGuessed("mobiles",["b","m","w","i","o","s","l","p"]))
 #print(getGuessedWord("piccolo",["m","c","l","o","s","r","y","z","t"]))
-print(getAvailableLetters(['e', 'i', 'k', 'p', 'r', 's']))
+#print(getAvailableLetters(['e', 'i', 'k', 'p', 'r', 's']))
 
 # When you've completed your hangman function, uncomment these two lines
 # and run this file to test! (hint: you might want to pick your own
 # secretWord while you're testing)
 
-# secretWord = chooseWord(wordlist).lower()
-# hangman(secretWord)
+secretWord = chooseWord(wordlist).lower()
+hangman(secretWord)
