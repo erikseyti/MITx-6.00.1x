@@ -134,6 +134,7 @@ def hangman(secretWord):
     # FILL IN YOUR CODE HERE...
     contagemPalavra =len(secretWord)
     palavraDescoberta = False
+    palavraOculta = ""
     lettersGuessed = []
     guess = ""
     mistakesMade = 8
@@ -148,7 +149,23 @@ def hangman(secretWord):
         guess = input("Please guess a letter: ")
         guessInLowerCase = guess.lower()
         print(guessInLowerCase)
-        mistakesMade = mistakesMade - 1
+        lettersGuessed.append(guessInLowerCase)
+        print(lettersGuessed)
+        palavraParcial = getGuessedWord(secretWord, lettersGuessed)
+        if palavraOculta != palavraParcial:
+            palavraOculta = palavraParcial
+            print("Good guess: "+ str(palavraOculta))
+            palavraDescoberta = isWordGuessed(secretWord, palavraOculta)
+        else:
+            print("Oops! That letter is not in my word: " + str(palavraOculta))
+            mistakesMade = mistakesMade - 1
+        print("------------")
+        if palavraDescoberta == True:
+            print("Congratulations, You Won")
+            return secretWord
+    else:
+        print("Sorry, you ran out of guesses. The word was: "+ secretWord)
+        return secretWord
 
 #print(isWordGuessed("mobiles",["b","m","w","i","o","s","l","p"]))
 #print(getGuessedWord("piccolo",["m","c","l","o","s","r","y","z","t"]))
