@@ -138,22 +138,31 @@ def hangman(secretWord):
     lettersGuessed = []
     guess = ""
     mistakesMade = 8
+    n=0
     print("Welcome to the game, Hangman!")
     print("I am Thinking of a word that is "+ str(contagemPalavra) + " letters long.")
     print("-------------")
     palavraParcial = getGuessedWord(secretWord, lettersGuessed)
     palavraOculta = palavraParcial
     while mistakesMade > 0:
+        n = 0
         print("You Have "+ str(mistakesMade) +" Guesses Left.")
         letrasDisponiveis = getAvailableLetters(lettersGuessed) 
         print("Available Letters: " + letrasDisponiveis)
         guess = input("Please guess a letter: ")
         guessInLowerCase = guess.lower()
-        while guessInLowerCase in lettersGuessed and lettersGuessed == []:
-            print("Oops! You've already guessed that letter:"+ str(palavraOculta))
-            guess = input("Please guess a letter: ")
-            guessInLowerCase = guess.lower()
-            print("------------")
+        while n <1:
+            if guessInLowerCase in lettersGuessed:
+                print("Oops! You've already guessed that letter:"+ str(palavraOculta))
+                print("------------")
+                print("You Have "+ str(mistakesMade) +" Guesses Left.")
+                letrasDisponiveis = getAvailableLetters(lettersGuessed) 
+                print("Available Letters: " + letrasDisponiveis)
+                guess = input("Please guess a letter: ")
+                guessInLowerCase = guess.lower()
+                
+            else:
+                n = n + 1
         lettersGuessed.append(guessInLowerCase)
         palavraParcial = getGuessedWord(secretWord, lettersGuessed)
         if palavraOculta != palavraParcial:
