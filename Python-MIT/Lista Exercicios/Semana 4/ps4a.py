@@ -81,7 +81,7 @@ def getWordScore(word, n):
     valorPalavra = valorPalavra * numeroLetras
     if numeroLetras == n:
         valorPalavra = valorPalavra+ 50
-    print(valorPalavra)
+    #himprint(valorPalavra)
     return valorPalavra
 
 
@@ -106,6 +106,25 @@ def displayHand(hand):
              print(letter,end=" ")       # print all on the same line
     print()                             # print an empty line
 
+def alternativedisplayHand(hand):
+    """
+    Displays the letters currently in the hand.
+
+    For example:
+    >>> displayHand({'a':1, 'x':2, 'l':3, 'e':1})
+    Should print out something like:
+       a x x l l l e
+    The order of the letters is unimportant.
+
+    hand: dictionary (string -> int)
+    """
+    letrasDisponiveis = ""
+    for letter in hand.keys():
+        for j in range(hand[letter]):
+            letrasDisponiveis = letrasDisponiveis + letter + " "
+            #print(letter,end=" ")       # print all on the same line
+    #print()                             # print an empty line
+    print("Current Hand: " +letrasDisponiveis)
 #
 # Problem #2: Make sure you understand how this function works and what it does!
 #
@@ -269,15 +288,19 @@ def playHand(hand, wordList, n):
     tamanhoMao = calculateHandlen(hand)
     # As long as there are still letters left in the hand:
      
-    while palavra != ".":         
+    while palavra != ".":
+         
         # Display the hand
-        mostrarMao = displayHand(hand)
-        tamanhoMao = calculateHandlen(hand)
-        #print(tamanhoMao)
-       # print(mostrarMao)
+        #adicionar a função alternativedisplayHand
+        tamanhoMao = calculateHandlen(hand) 
         if tamanhoMao == 0:
+            print("")
             print(" Run out of letters. Total score: "+ str(valorTotal)+ " points")
             break
+        mostrarMao = alternativedisplayHand(hand)
+        #print(tamanhoMao)
+       # print(mostrarMao)
+        
         # Ask user for input
         palavra = input("Enter word, or a ""."" to indicate that you are finished: ")
         # If the input is a single period:
@@ -291,7 +314,7 @@ def playHand(hand, wordList, n):
         # Otherwise (the input is not a single period):
             # If the word is not valid:
         if palavra == "." or mostrarMao=="":
-            print(" Goodbye! Total score: "+ str(valorTotal))
+            print("Goodbye! Total score: "+ str(valorTotal))
             break
         palavraValida = isValidWord(palavra,hand,wordList)
         if palavraValida == False:
@@ -301,7 +324,7 @@ def playHand(hand, wordList, n):
             # Otherwise (the word is valid):
         else:
             valorPalavra = getWordScore(palavra, n)
-            print(valorPalavra)
+            #print(valorPalavra)
             valorTotal = valorTotal + valorPalavra
                 # Tell the user how many points the word earned, and the updated total score, in one line followed by a blank line
             print("'"+str(palavra)+"'"+ " earned "+ str(valorPalavra) + " points. Total: "+ str(valorTotal) +" points")
@@ -338,7 +361,7 @@ def playGame(wordList):
 #print(y)
 #z = dealHand(7)
 #print(z)
-#y = displayHand({'h': 1, 'e': 1, 'k': 1, 'b': 1, 'o': 1, 'g': 1, 'x': 1})
+#y = alternativedisplayHand({'h': 1, 'e': 1, 'k': 1, 'b': 1, 'o': 1, 'g': 1, 'x': 1})
 #y = displayHand({'i': 1, 'm': 1, 'u': 1, 'l': 2, 'a': 1, 'q': 1})
 #print(y)
 #handOrig = {'o': 3, 'u': 3, 'r': 3, 'w': 3, 't': 3, 'i': 3, 'q': 3, 'p': 3, 'y': 3, 'e': 3}
