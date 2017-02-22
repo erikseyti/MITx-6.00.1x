@@ -159,53 +159,18 @@ def updateHand(hand, word):
     returns: dictionary (string -> int)
     """
     palavraLista = list(word)
-    #letrasDisponiveis = {}
     handCopy = hand.copy()
-    #print(handCopy)
     for h in handCopy:
         if h in palavraLista:
-            #print("excessão:" + str(h))
             handCopy[h] -=1
-            #print(handCopy)
-            #if handCopy[h] == 0:
-            #print("palavraLista: "+ str(palavraLista))
             palavraLista.remove(h)
-            #print("palavraLista: "+ str(palavraLista))
-        #elif h not in palavraLista :
-            #print("entrou elif: "+ str(h))
-            #letrasDisponiveis[h] = 1
-                    #print("entrou if: "+ str(h))
-    #print(letrasDisponiveis)
     for h in handCopy:
         if h in palavraLista:
-            #print("excessão:" + str(h))
             handCopy[h] -=1
-            #print(handCopy)
-            #if handCopy[h] == 0:
-            #print("palavraLista: "+ str(palavraLista))
             palavraLista.remove(h)
-            #print("palavraLista: "+ str(palavraLista))
-        #if handCopy[h] ==0:
-            #print("ok")
-            #print(h)
-            #removekey(handCopy, h)
-            #print("if PalavraLista: "+str(palavraLista))
-        #elif h not in palavraLista and handCopy[h]!=0:
-            #print("entrou elif: "+ str(h))
-            #letrasDisponiveis[h] = 1
-    #print(letrasDisponiveis)
     return handCopy
-    #print(hand)
-    #return hand
-        
-#    y = displayHand({'h': 1, 'e': 1, 'k': 1, 'b': 1, 'o': 1, 'g': 1, 'x': 1})
-#    print("puxou a mão: "+ str(y))
-#    print(y)
 
-def removekey(d, key):
-    r = dict(d)
-    del r[key]
-    return r
+
 #
 # Problem #3: Test word validity
 #
