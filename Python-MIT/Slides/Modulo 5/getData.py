@@ -5,6 +5,10 @@ Created on Wed Jun  8 12:37:37 2016
 @author: ericgrimson
 """
 
+
+
+
+
 def get_data(aTuple):
     nums = ()
     words = ()
