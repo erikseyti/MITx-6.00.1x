@@ -72,22 +72,16 @@ def getWordScore(word, n):
     returns: int >= 0
     """
     valorPalavra =0
-    #print(word)
     numeroLetras = len(word)
-    #print(numeroLetras)
     palavraExtenso = list(word)
-    #print(palavraExtenso)
     for l in palavraExtenso:
-        #print(l)
         x= SCRABBLE_LETTER_VALUES
         if l in x:
             valorPalavra = valorPalavra + x.get(l)
-            #print("valor Unitario: " + str(valorPalavra))
     valorPalavra = valorPalavra * numeroLetras
     if numeroLetras == n:
         valorPalavra = valorPalavra+ 50
-    #print("valor da palavra: "+str(valorPalavra))
-    return valorPalavra
+        return valorPalavra
 
 
 
@@ -178,6 +172,11 @@ def isValidWord(word, hand, wordList):
     """
     Returns True if word is in the wordList and is entirely
     composed of letters in the hand. Otherwise, returns False.
+    
+    fazer uma validação se a palavra é uma palvara valida, presente no arquivo word.txt
+    verificar se é possivel criar a palavra com as letras presentes na mão
+    retorna true se for verdade ambas as condições
+    retorna falso de outra forma
 
     Does not mutate hand or wordList.
    
@@ -185,9 +184,26 @@ def isValidWord(word, hand, wordList):
     hand: dictionary (string -> int)
     wordList: list of lowercase strings
     """
-    # TO DO ... <-- Remove this comment when you code this function
-
-
+    #fazer uma validação se a palavra é uma palvara valida, presente no arquivo word.txt
+    #verificar se é possivel criar a palavra com as letras presentes na mão
+    #retorna true se for verdade ambas as condições
+    #retorna falso de outra forma
+    palavraLista = list(word)
+    handCopy = hand.copy()
+    listaTemp = palavraLista[:]
+    if word in wordList:
+        for h in palavraLista:
+            if h in handCopy:
+                handCopy[h]-=1
+                if handCopy[h] >=0:
+                    listaTemp.remove(h)
+        if listaTemp == []:
+            return True
+        else:
+            return False
+    else:
+        return False
+    
 #
 # Problem #4: Playing a hand
 #
@@ -199,8 +215,27 @@ def calculateHandlen(hand):
     hand: dictionary (string-> int)
     returns: integer
     """
-    # TO DO... <-- Remove this comment when you code this function
+    tamanhoMao = []
+    handCopy = hand.copy()
+    for h in handCopy:
+        if handCopy[h] == 1:
+            tamanhoMao.append(h)
+        elif handCopy[h] == 2:
+            tamanhoMao.append(h)
+            tamanhoMao.append(h)
+        elif handCopy[h] == 3:
+            tamanhoMao.append(h)
+            tamanhoMao.append(h)
+            tamanhoMao.append(h)
+        elif handCopy[h] == 4:
+            tamanhoMao.append(h)
+            tamanhoMao.append(h)
+            tamanhoMao.append(h)
+            tamanhoMao.append(h)
 
+    return len(tamanhoMao)
+
+    
 
 
 def playHand(hand, wordList, n):
@@ -285,13 +320,20 @@ def playGame(wordList):
 #y = displayHand({'h': 1, 'e': 1, 'k': 1, 'b': 1, 'o': 1, 'g': 1, 'x': 1})
 #y = displayHand({'i': 1, 'm': 1, 'u': 1, 'l': 2, 'a': 1, 'q': 1})
 #print(y)
-handOrig = {'o': 3, 'u': 3, 'r': 3, 'w': 3, 't': 3, 'i': 3, 'q': 3, 'p': 3, 'y': 3, 'e': 3}
-handCopy = handOrig.copy()
-#print(handCopy)
-word = 'typewriter'
-hand2 = updateHand(handCopy, word)
-print(hand2)
+#handOrig = {'o': 3, 'u': 3, 'r': 3, 'w': 3, 't': 3, 'i': 3, 'q': 3, 'p': 3, 'y': 3, 'e': 3}
+#handCopy = handOrig.copy()
+##print(handCopy)
+#word = 'typewriter'
+#hand2 = updateHand(handCopy, word)
+#print(hand2)
+#print(wordList)
 #
+#wordList = loadWords()
+#s = isValidWord('rapture',{'e': 1, 'p': 2, 't': 1, 'a': 3, 'u': 1, 'r': 1},wordList)
+#print(s)
+
+c = calculateHandlen({'e': 1, 'p': 2, 't': 1, 'a': 3, 'u': 1, 'r': 1})
+print(c)
 # Build data structures used for entire session and play game
 #
 if __name__ == '__main__':

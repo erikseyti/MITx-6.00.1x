@@ -24,6 +24,7 @@ def biggest(aDict):
     contador = 0
     
     for c in aDict.keys():
+        print(aDict.values())
         valorAtual = len(aDict[c])
         valorMaior = aDict[c][contador]
         if valorAtual >= maiorValor:
