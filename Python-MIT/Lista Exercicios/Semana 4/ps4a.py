@@ -81,7 +81,8 @@ def getWordScore(word, n):
     valorPalavra = valorPalavra * numeroLetras
     if numeroLetras == n:
         valorPalavra = valorPalavra+ 50
-        return valorPalavra
+    print(valorPalavra)
+    return valorPalavra
 
 
 
@@ -232,7 +233,6 @@ def calculateHandlen(hand):
             tamanhoMao.append(h)
             tamanhoMao.append(h)
             tamanhoMao.append(h)
-
     return len(tamanhoMao)
 
     
@@ -260,33 +260,54 @@ def playHand(hand, wordList, n):
       n: integer (HAND_SIZE; i.e., hand size required for additional points)
       
     """
-    # BEGIN PSEUDOCODE <-- Remove this comment when you code this function; do your coding within the pseudocode (leaving those comments in-place!)
+    
     # Keep track of the total score
-    
+    palavraValida = False
+    valorTotal = 0
+    valorPalavra = 0
+    palavra = ""
+    tamanhoMao = calculateHandlen(hand)
     # As long as there are still letters left in the hand:
-    
+     
+    while palavra != ".":         
         # Display the hand
-        
+        mostrarMao = displayHand(hand)
+        tamanhoMao = calculateHandlen(hand)
+        #print(tamanhoMao)
+       # print(mostrarMao)
+        if tamanhoMao == 0:
+            print(" Run out of letters. Total score: "+ str(valorTotal)+ " points")
+            break
         # Ask user for input
-        
+        palavra = input("Enter word, or a ""."" to indicate that you are finished: ")
         # If the input is a single period:
-        
-            # End the game (break out of the loop)
+        for n in palavra:
+            if n == " ":
+                break
 
-            
+            # End the game (break out of the loop) 
+        if n == " ":
+            break
         # Otherwise (the input is not a single period):
-        
             # If the word is not valid:
-            
+        if palavra == "." or mostrarMao=="":
+            print(" Goodbye! Total score: "+ str(valorTotal))
+            break
+        palavraValida = isValidWord(palavra,hand,wordList)
+        if palavraValida == False:
                 # Reject invalid word (print a message followed by a blank line)
-
+                print("Invalid word, please try again.")
+                print("")
             # Otherwise (the word is valid):
-
+        else:
+            valorPalavra = getWordScore(palavra, n)
+            print(valorPalavra)
+            valorTotal = valorTotal + valorPalavra
                 # Tell the user how many points the word earned, and the updated total score, in one line followed by a blank line
-                
+            print("'"+str(palavra)+"'"+ " earned "+ str(valorPalavra) + " points. Total: "+ str(valorTotal) +" points")
                 # Update the hand 
-                
-
+            hand = updateHand(hand, palavra)
+            #print(hand)
     # Game is over (user entered a '.' or ran out of letters), so tell user the total score
 
 
@@ -328,12 +349,15 @@ def playGame(wordList):
 #print(hand2)
 #print(wordList)
 #
-#wordList = loadWords()
+wordList = loadWords()
 #s = isValidWord('rapture',{'e': 1, 'p': 2, 't': 1, 'a': 3, 'u': 1, 'r': 1},wordList)
 #print(s)
 
-c = calculateHandlen({'e': 1, 'p': 2, 't': 1, 'a': 3, 'u': 1, 'r': 1})
-print(c)
+#c = calculateHandlen({'e': 1, 'p': 2, 't': 1, 'a': 3, 'u': 1, 'r': 1})
+#print(c)
+
+p = playHand({'n':1, 'e':1, 't':1, 'a':1, 'r':1, 'i':2}, wordList, 7)
+
 # Build data structures used for entire session and play game
 #
 if __name__ == '__main__':
