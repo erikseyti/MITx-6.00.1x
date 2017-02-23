@@ -1,0 +1,95 @@
+def alternativedisplayHand(hand):
+    """
+    Displays the letters currently in the hand.
+
+    For example:
+    >>> displayHand({'a':1, 'x':2, 'l':3, 'e':1})
+    Should print out something like:
+       a x x l l l e
+    The order of the letters is unimportant.
+
+    hand: dictionary (string -> int)
+    """
+    letrasDisponiveis = ""
+    for letter in hand.keys():
+        for j in range(hand[letter]):
+            letrasDisponiveis = letrasDisponiveis + letter + " "
+            #print(letter,end=" ")       # print all on the same line
+    #print()                             # print an empty line
+    print("Current Hand: " +letrasDisponiveis)
+
+def playHand(hand, wordList, n):
+    """
+    Allows the user to play the given hand, as follows:
+
+    * The hand is displayed.
+    * The user may input a word or a single period (the string ".") 
+      to indicate they're done playing
+    * Invalid words are rejected, and a message is displayed asking
+      the user to choose another word until they enter a valid word or "."
+    * When a valid word is entered, it uses up letters from the hand.
+    * After every valid word: the score for that word is displayed,
+      the remaining letters in the hand are displayed, and the user
+      is asked to input another word.
+    * The sum of the word scores is displayed when the hand finishes.
+    * The hand finishes when there are no more unused letters or the user
+      inputs a "."
+
+      hand: dictionary (string -> int)
+      wordList: list of lowercase strings
+      n: integer (HAND_SIZE; i.e., hand size required for additional points)
+      
+    """
+    
+    # Keep track of the total score
+    palavraValida = False
+    valorTotal = 0
+    valorPalavra = 0
+    palavra = ""
+    tamanhoMao = calculateHandlen(hand)
+    # As long as there are still letters left in the hand:
+     
+    while palavra != ".":
+         
+        # Display the hand
+        #adicionar a função alternativedisplayHand
+        tamanhoMao = calculateHandlen(hand) 
+        if tamanhoMao == 0:
+            print("")
+            print(" Run out of letters. Total score: "+ str(valorTotal)+ " points")
+            break
+        mostrarMao = alternativedisplayHand(hand)
+        #print(tamanhoMao)
+       # print(mostrarMao)
+        
+        # Ask user for input
+        palavra = input("Enter word, or a ""."" to indicate that you are finished: ")
+        # If the input is a single period:
+        for n in palavra:
+            if n == " ":
+                break
+
+            # End the game (break out of the loop) 
+        if n == " ":
+            break
+        # Otherwise (the input is not a single period):
+            # If the word is not valid:
+        if palavra == "." or mostrarMao=="":
+            print("Goodbye! Total score: "+ str(valorTotal))
+            break
+        palavraValida = isValidWord(palavra,hand,wordList)
+        if palavraValida == False:
+                # Reject invalid word (print a message followed by a blank line)
+                print("Invalid word, please try again.")
+                print("")
+            # Otherwise (the word is valid):
+        else:
+            valorPalavra = getWordScore(palavra, tamanhoMao)
+            #print(valorPalavra)
+            valorTotal = valorTotal + valorPalavra
+                # Tell the user how many points the word earned, and the updated total score, in one line followed by a blank line
+            print("'"+str(palavra)+"'"+ " earned "+ str(valorPalavra) + " points. Total: "+ str(valorTotal) +" points")
+                # Update the hand 
+            hand = updateHand(hand, palavra)
+            #print(hand)
+    # Game is over (user entered a '.' or ran out of letters), so tell user the total score

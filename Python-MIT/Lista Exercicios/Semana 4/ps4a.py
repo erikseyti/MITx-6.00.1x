@@ -281,6 +281,7 @@ def playHand(hand, wordList, n):
     """
     
     # Keep track of the total score
+    letrasMao = n
     palavraValida = False
     valorTotal = 0
     valorPalavra = 0
@@ -289,7 +290,7 @@ def playHand(hand, wordList, n):
     # As long as there are still letters left in the hand:
      
     while palavra != ".":
-         
+        #print(letrasMao)
         # Display the hand
         #adicionar a função alternativedisplayHand
         tamanhoMao = calculateHandlen(hand) 
@@ -323,7 +324,7 @@ def playHand(hand, wordList, n):
                 print("")
             # Otherwise (the word is valid):
         else:
-            valorPalavra = getWordScore(palavra, n)
+            valorPalavra = getWordScore(palavra, letrasMao)
             #print(valorPalavra)
             valorTotal = valorTotal + valorPalavra
                 # Tell the user how many points the word earned, and the updated total score, in one line followed by a blank line
