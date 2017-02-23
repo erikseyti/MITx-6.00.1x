@@ -133,9 +133,20 @@ def playGame(wordList):
     maoAntiga = {}
     hand = {}
     tamanhoMao = HAND_SIZE
+    n = 0
+    x = 0
     while variavelMao !="e":
+        n = 0
         variavelMao = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
-        
+        #print(variavelMao)
+        while x <1:
+             if variavelMao != "e" and variavelMao != "r" and variavelMao != "n":
+                 print("Invalid command.")
+                 variavelMao = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+             else:
+                #print("oi")
+                x = x +2
+        #variavelMao = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
         if variavelMao == "r":
             if hand == {}:
                 print("You have not played a hand yet. Please play a new hand first!")
@@ -146,36 +157,59 @@ def playGame(wordList):
         if variavelMao == "n":
             if hand == {}:
                 hand = dealHand(tamanhoMao)
+                while n <1:
+                    if jogador == "u":
+                        n= n + 1
+                    elif jogador == "c":
+                        n= n +1
+                    else:
+                        print("Invalid command.")
+                        jogador = input("Enter u to have yourself play, c to have the computer play: ")
+                        
                 if jogador == "u":
                     playHand(hand,wordList,tamanhoMao)
                 elif jogador == "c":
                     compPlayHand(hand,wordList,tamanhoMao)
-                else:
-                    print("nenhum dos 2!")
             else:
                 jogador = input("Enter u to have yourself play, c to have the computer play: ")
                 maoAntiga.clear()
                 maoAntiga = hand.copy()
                 hand.clear()
                 hand = dealHand(tamanhoMao)
+                while n <1:
+                    if jogador == "u":
+                        n= n + 1
+                    elif jogador == "c":
+                        n= n +1
+                    else:
+                        print("Invalid command.")
+                        jogador = input("Enter u to have yourself play, c to have the computer play: ")
+                        
                 if jogador == "u":
                     playHand(hand,wordList,tamanhoMao)
                 elif jogador == "c":
                     compPlayHand(hand,wordList,tamanhoMao)
-                else:
-                    print("nenhum dos 2%")
         elif variavelMao == "r" and hand!= {}:
                 jogador = input("Enter u to have yourself play, c to have the computer play: ")
                 maoAntiga.clear()
                 maoAntiga = hand.copy()
+                while n <1:
+                    if jogador == "u":
+                        n= n + 1
+                    elif jogador == "c":
+                        n= n +1
+                    else:
+                        print("Invalid command.")
+                        jogador = input("Enter u to have yourself play, c to have the computer play: ")
+                        
                 if jogador == "u":
                     playHand(maoAntiga,wordList, tamanhoMao)
                 elif jogador == "c":
                     compPlayHand(hand,wordList,tamanhoMao)
-                else:
-                    print("nenhum dos 2!!")
         elif variavelMao == "e":
             break
+#        elif variavelMao != "e" and variavelMao != "c" and variavelMao != "u":
+#            print("Invalid command.")
         else:
             if hand != {}:
                 print("Invalid command.")
