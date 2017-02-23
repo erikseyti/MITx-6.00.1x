@@ -5,7 +5,7 @@ import string
 
 VOWELS = 'aeiou'
 CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
-HAND_SIZE = 7
+HAND_SIZE = 10
 
 SCRABBLE_LETTER_VALUES = {
     'a': 1, 'b': 3, 'c': 3, 'd': 2, 'e': 1, 'f': 4, 'g': 2, 'h': 4, 'i': 1, 'j': 8, 'k': 5, 'l': 1, 'm': 3, 'n': 1, 'o': 1, 'p': 3, 'q': 10, 'r': 1, 's': 1, 't': 1, 'u': 1, 'v': 4, 'w': 4, 'x': 8, 'y': 4, 'z': 10
@@ -351,11 +351,75 @@ def playGame(wordList):
  
     2) When done playing the hand, repeat from step 1    
     """
-    # TO DO ... <-- Remove this comment when you code this function
-    print("playGame not yet implemented.") # <-- Remove this line when you code the function
-   
+    variavelMao = ""
+    #variavel criada para armazenar o valor anterior da mão jogada
+    maoAntiga = {}
+    hand = {}
+    tamanhoMao = HAND_SIZE
+    while variavelMao !="e":
+        variavelMao = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+        if variavelMao == "n":
+            #print("nova Mão")
+            if hand == {}:
+                hand = dealHand(tamanhoMao)
+                playHand(hand,wordList,tamanhoMao)
+                #print("chamar Função")
+            else:
+                #print("ero")
+                #apagar valor atual da mão Antiga
+                maoAntiga.clear()
+                #atribuir o valor de hand para mão Antiga
+                maoAntiga = hand.copy()
+                #provavelmente dar um clear no Hand
+                #print(hand)
+                #print(maoAntiga)
+                hand.clear()
+                #atribuir um novo valor para a mão
+                #chamar dealHand(HandSize)
+                hand = dealHand(tamanhoMao)
+                #chamar PlayHand
+                playHand(hand,wordList,tamanhoMao)   
+        elif variavelMao == "r":
+            if hand == {}:
+                print("You have not played a hand yet. Please play a new hand first!")
+            else:
+                #print("pegando mão Antiga")
+                #chamar a mão antiga a variavel Play Hand
+                #hand.clear()
+                #hand = maoAntiga.copy()
+                #chamar Play Hand
+                maoAntiga.clear()
+                maoAntiga = hand.copy()
+                playHand(maoAntiga,wordList, tamanhoMao)
+        elif variavelMao == "e":
+            break
+        else:
+            print("Invalid command.")
 
-
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 #x = getWordScore("play", 7)
 #print(x)
 #y = displayHand({'a':1, 'x':2, 'l':3, 'e':1})
@@ -380,7 +444,7 @@ wordList = loadWords()
 #c = calculateHandlen({'e': 1, 'p': 2, 't': 1, 'a': 3, 'u': 1, 'r': 1})
 #print(c)
 
-p = playHand({'n':1, 'e':1, 't':1, 'a':1, 'r':1, 'i':2}, wordList, 7)
+#p = playHand({'n':1, 'e':1, 't':1, 'a':1, 'r':1, 'i':2}, wordList, 7)
 
 # Build data structures used for entire session and play game
 #

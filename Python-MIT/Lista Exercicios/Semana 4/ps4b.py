@@ -29,6 +29,8 @@ def compChooseWord(hand, wordList, n):
     bestWord = None
     # For each word in the wordList
     for word in wordList:
+        #print("chose Word:"+str(word))
+        #print("melhor Palavar: "+ str(bestWord))
         # If you can construct the word from your hand
         if isValidWord(word, hand, wordList):
             # find out how much making that word is worth
@@ -38,6 +40,7 @@ def compChooseWord(hand, wordList, n):
                 # update your best score, and best word accordingly
                 bestScore = score
                 bestWord = word
+                
     # return the best word you found.
     return bestWord
 
@@ -124,10 +127,66 @@ def playGame(wordList):
 
     wordList: list (string)
     """
-    # TO DO... <-- Remove this comment when you code this function
-    print("playGame not yet implemented.") # <-- Remove this when you code this function
-
+    jogador = ""
+    variavelMao = ""
+    #variavel criada para armazenar o valor anterior da mão jogada
+    maoAntiga = {}
+    hand = {}
+    tamanhoMao = HAND_SIZE
+    while variavelMao !="e":
+        variavelMao = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
         
+        if variavelMao == "r":
+            if hand == {}:
+                print("You have not played a hand yet. Please play a new hand first!")
+        elif variavelMao == "e":
+            break
+        if hand == {} and variavelMao != "r":
+            jogador = input("Enter u to have yourself play, c to have the computer play: ")
+        if variavelMao == "n":
+            if hand == {}:
+                hand = dealHand(tamanhoMao)
+                if jogador == "u":
+                    playHand(hand,wordList,tamanhoMao)
+                elif jogador == "c":
+                    compPlayHand(hand,wordList,tamanhoMao)
+                else:
+                    print("nenhum dos 2!")
+            else:
+                jogador = input("Enter u to have yourself play, c to have the computer play: ")
+                maoAntiga.clear()
+                maoAntiga = hand.copy()
+                hand.clear()
+                hand = dealHand(tamanhoMao)
+                if jogador == "u":
+                    playHand(hand,wordList,tamanhoMao)
+                elif jogador == "c":
+                    compPlayHand(hand,wordList,tamanhoMao)
+                else:
+                    print("nenhum dos 2%")
+        elif variavelMao == "r" and hand!= {}:
+                jogador = input("Enter u to have yourself play, c to have the computer play: ")
+                maoAntiga.clear()
+                maoAntiga = hand.copy()
+                if jogador == "u":
+                    playHand(maoAntiga,wordList, tamanhoMao)
+                elif jogador == "c":
+                    compPlayHand(hand,wordList,tamanhoMao)
+                else:
+                    print("nenhum dos 2!!")
+        elif variavelMao == "e":
+            break
+        else:
+            if hand != {}:
+                print("Invalid command.")
+    
+    
+    
+    # TO DO... <-- Remove this comment when you code this function
+    #print("playGame not yet implemented.") # <-- Remove this when you code this function
+
+#x =compPlayHand({'a': 2, 'e': 2, 'i': 2, 'm': 2, 'n': 2, 't': 2}, wordList, 12)
+#print(x)
 #
 # Build data structures used for entire session and play game
 #
