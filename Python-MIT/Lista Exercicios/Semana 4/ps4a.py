@@ -78,6 +78,7 @@ def getWordScore(word, n):
         x= SCRABBLE_LETTER_VALUES
         if l in x:
             valorPalavra = valorPalavra + x.get(l)
+            print(valorPalavra)
     valorPalavra = valorPalavra * numeroLetras
     if numeroLetras == n:
         valorPalavra = valorPalavra+ 50
@@ -420,8 +421,8 @@ def playGame(wordList):
         
         
         
-#x = getWordScore("play", 7)
-#print(x)
+x = getWordScore("play", 7)
+print(x)
 #y = displayHand({'a':1, 'x':2, 'l':3, 'e':1})
 #print(y)
 #z = dealHand(7)
